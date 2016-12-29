@@ -7,9 +7,14 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'login.html'
 })
 export class LoginPage {
+credentials : any = {};
 
   constructor(public navCtrl: NavController) {
     
+  }
+
+  login(){
+
   }
 
 }

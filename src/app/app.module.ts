@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
+import { LoginService } from '../providers/login-service';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { LoginPage } from '../pages/login/login';
     MyApp,
     LoginPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler },
+    LoginService]
 })
-export class AppModule {}
+export class AppModule { }
