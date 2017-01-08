@@ -1,3 +1,5 @@
+import { HomePage } from './../pages/home/home';
+import { ConstantService } from './../providers/constant-service';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -7,7 +9,8 @@ import { LoginService } from '../providers/login-service';
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage
+    LoginPage,
+    HomePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -15,9 +18,10 @@ import { LoginService } from '../providers/login-service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage
+    LoginPage,
+    HomePage
   ],
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler },
-    LoginService]
+    LoginService, ConstantService]
 })
 export class AppModule { }

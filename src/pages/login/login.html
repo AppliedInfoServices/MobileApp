@@ -1,23 +1,39 @@
-
-
-<ion-content padding>
-  <ion-list class="centerDiv">
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="http://placehold.it/300x200"/>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
 
   <ion-item>
     <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" name="UserName" [(ngModel)]="credentials.username"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input type="password" name="Password" [(ngModel)]="credentials.password"></ion-input>
   </ion-item>
-<br>
+
 <ion-item>
   <ion-label primary> Show Password</ion-label>
   <ion-toggle checked="false"></ion-toggle>
 </ion-item>
-
 </ion-list>
-<button ion-button outline block>Login</button>
+ </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" (click)="login()">Login</button>
+        </ion-col>
+      </ion-row>
+      
+  </div>
 </ion-content>
