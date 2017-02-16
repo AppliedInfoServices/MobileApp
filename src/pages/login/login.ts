@@ -10,17 +10,34 @@ import { NavController, LoadingController } from 'ionic-angular';
 })
 
 export class LoginPage {
-  credentials = {username : "", password :""};
+  credentials = { username: "", password: "" };
   loginResponse: any;
   UserDetails: any;
+  alertMessage: string;
   constructor(public navCtrl: NavController,
-  private loadingCtrl: LoadingController,
+    private loadingCtrl: LoadingController,
     private loginService: LoginService,
     private constants: ConstantService) {
 
   }
 
+  isValidData() {
+    if (!this.credentials.username || this.credentials.username.length === 0) {
+      this.alertMessage = "Please enter Username.";
+      return false;
+    }
+
+    if (!this.credentials.password || this.credentials.password.length === 0) {
+      this.alertMessage = "Please enter Password.";
+      return false;
+    }
+    return true;
+  }
+
   login() {
+    if (!this.isValidData()) {
+      return;
+    }
     this.loginService.getLoginContent(this.credentials)
       .subscribe(
       data => {
@@ -31,9 +48,9 @@ export class LoginPage {
             details => {
               this.UserDetails = details;
               console.log(this.UserDetails.UserName);
-              this.navCtrl.push(HomePage, {details: this.UserDetails});
+              this.navCtrl.push(HomePage, { details: this.UserDetails });
             },
-            error => { console.log(error) });
+            error => { this.alertMessage = error });
         }
       },
       error => {
