@@ -27,7 +27,7 @@ Credentials:string;
     this.LoadTimeSheetUrl= "/api/TimeSheetApi/LoadTimeSheet?date=";
     this.LoadWeekViewUrl= "/api/TimeSheetApi/WeekViewTimeSheet?date=";
     this.SaveTimeSheetUrl= "/api/TimeSheetApi/UpdateMobileTimeSheet?date=";
-    this.LoadProfilesUrl: "/api/ProfileApi/GetEmployeeProfiles",
+    this.LoadProfilesUrl= "/api/ProfileApi/GetEmployeeProfiles";
     this.LoginUrl= "/api/LoginApi/Login";
     this.UserDetailsUrl="/api/UserDetailsApi/UserDetails";
     this.SuccessReponse= "SUCCESS";
