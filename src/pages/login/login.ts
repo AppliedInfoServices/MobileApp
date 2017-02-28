@@ -34,6 +34,17 @@ export class LoginPage {
     return true;
   }
 
+  getDetails() {
+    this.loginService.getUserDetails(this.credentials.username)
+      .subscribe(
+      details => {
+        this.UserDetails = details;
+        console.log(this.UserDetails.UserName);
+        this.navCtrl.push(HomePage, { details: this.UserDetails });
+      },
+      error => { this.alertMessage = error; });
+  }
+
   login() {
     if (!this.isValidData()) {
       return;
@@ -43,18 +54,11 @@ export class LoginPage {
       data => {
         this.loginResponse = data;
         if (this.loginResponse === this.constants.SuccessReponse) {
-          this.loginService.getUserDetails(this.credentials.username)
-            .subscribe(
-            details => {
-              this.UserDetails = details;
-              console.log(this.UserDetails.UserName);
-              this.navCtrl.push(HomePage, { details: this.UserDetails });
-            },
-            error => { this.alertMessage = error });
+          this.getDetails();
         }
       },
       error => {
-        console.log(error)
+        this.alertMessage = error;
       });
 
   }

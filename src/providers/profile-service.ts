@@ -1,5 +1,7 @@
+import { ConstantService } from './constant-service';
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -10,9 +12,23 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class ProfileService {
+profileUrl : string;
+  constructor(public http: Http, private constants: ConstantService) {
+    this.profileUrl = constants.ServiceUrl +  constants.LoadProfilesUrl;
+  }
 
-  constructor(public http: Http) {
-    console.log('Hello ProfileService Provider');
+ public getContent(userName: string) {
+    let authToken = btoa(userName + ":true");
+    let requestHeaders = new Headers({ 'AUTH_TOKEN': authToken, 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: requestHeaders });
+    return this.http.get(this.profileUrl, options)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(error: Response | any) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
   }
 
 }
